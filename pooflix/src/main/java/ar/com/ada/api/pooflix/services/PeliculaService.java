@@ -29,4 +29,9 @@ public class PeliculaService {
     public Pelicula buscarPorNombre(String nombre) {
         return peliculaRepo.findByNombre(nombre);
     }
+
+    public List<Pelicula> buscarPelisPorNombre(String nombre){
+        List<Pelicula> listaPelis = peliculaRepo.findAllByNombre(nombre);
+        return listaPelis;
+    }
 }

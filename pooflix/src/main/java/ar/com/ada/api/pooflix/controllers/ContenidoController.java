@@ -33,9 +33,17 @@ public class ContenidoController {
     }
     
     @GetMapping("/api/series")
-    public ResponseEntity<List<Serie>> listarSeries(){
+    public ResponseEntity<List<Serie>> listarSeries(@RequestParam(value = "nombre", required = false) String nombre){
 
-        return ResponseEntity.ok(serieService.listarSeries());
+        List<Serie> ls;
+
+        if(nombre == null){
+            ls = serieService.listarSeries();
+            return ResponseEntity.ok(ls);
+        } else {
+            ls = serieService.buscarSeriesPorNombre(nombre);
+            return ResponseEntity.ok(ls);
+        }
     }
 
     @PostMapping("/api/peliculas")
@@ -52,9 +60,17 @@ public class ContenidoController {
     }
 
     @GetMapping("/api/peliculas")
-    public ResponseEntity<List<Pelicula>> listarPeliculas(){
+    public ResponseEntity<List<Pelicula>> listarPeliculas(@RequestParam(value = "nombre", required = false) String nombre){
 
-        return ResponseEntity.ok(peliculaService.listarPeliculas());
+        List<Pelicula> lp;
+
+        if(nombre == null){
+            lp = peliculaService.listarPeliculas();
+            return ResponseEntity.ok(lp);
+        } else {
+            lp = peliculaService.buscarPelisPorNombre(nombre);
+            return ResponseEntity.ok(lp);
+        }
     }
 
     @GetMapping("/api/series/{id}")
@@ -67,7 +83,6 @@ public class ContenidoController {
             return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(s);
-
     }
 
     @GetMapping("/api/peliculas/{id}")
@@ -80,7 +95,6 @@ public class ContenidoController {
             return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(p);
-
     }
     
 }

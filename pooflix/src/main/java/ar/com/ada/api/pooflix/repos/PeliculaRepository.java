@@ -1,5 +1,7 @@
 package ar.com.ada.api.pooflix.repos;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
@@ -12,4 +14,6 @@ public interface PeliculaRepository extends MongoRepository<Pelicula,ObjectId>{
     Pelicula findBy_id(ObjectId id);
 
     Pelicula findByNombre(String nombre);
+
+    List<Pelicula> findAllByNombre(String nombre);
 }

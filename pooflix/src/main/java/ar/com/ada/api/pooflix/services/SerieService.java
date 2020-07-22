@@ -30,4 +30,9 @@ public class SerieService {
     public Serie buscarPorNombre(String nombre) {
         return serieRepo.findByNombre(nombre);
     }
+
+    public List<Serie> buscarSeriesPorNombre(String nombre) {
+        List<Serie> listaSeries = serieRepo.findAllByNombre(nombre);
+        return listaSeries;
+    }
 }
