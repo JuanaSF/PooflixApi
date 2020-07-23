@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import ar.com.ada.api.pooflix.entities.*;
-import ar.com.ada.api.pooflix.models.GenericResponse;
+import ar.com.ada.api.pooflix.models.response.GenericResponse;
 import ar.com.ada.api.pooflix.services.*;
 
 @RestController
@@ -96,5 +96,47 @@ public class ContenidoController {
 
         return ResponseEntity.ok(p);
     }
+
+    @DeleteMapping("/api/series/{id}")
+    public ResponseEntity<GenericResponse> eliminarSerie(@PathVariable String id){
+
+        ObjectId obId = new ObjectId(id);
+        GenericResponse r = new GenericResponse(); 
+
+        boolean resultado = false;
+        resultado = serieService.eliminarSerie(obId);
+
+        if(resultado){
+
+            r.isOK = true;
+            r.message = "la serie fue eliminada";
+            return ResponseEntity.ok(r);
+        }
+
+        r.isOK = false;
+        r.message = "algo fallo al eliminar la serie";
+        return ResponseEntity.ok(r);
+    }
+
+    @DeleteMapping("/api/peliculas/{id}")
+    public ResponseEntity<GenericResponse> eliminarPelicula(@PathVariable String id){
+
+        ObjectId obId = new ObjectId(id);
+        GenericResponse r = new GenericResponse(); 
+
+        boolean resultado = false;
+        resultado = peliculaService.eliminarPelicula(obId);
+
+        if(resultado){
+
+            r.isOK = true;
+            r.message = "la peli fue eliminada";
+            return ResponseEntity.ok(r);
+        }
+
+        r.isOK = false;
+        r.message = "algo fallo al eliminar la pelicula";
+        return ResponseEntity.ok(r);
+    }    
     
 }

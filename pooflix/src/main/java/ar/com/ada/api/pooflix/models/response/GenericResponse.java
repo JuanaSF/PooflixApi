@@ -1,4 +1,4 @@
-package ar.com.ada.api.pooflix.models;
+package ar.com.ada.api.pooflix.models.response;
 
 public class GenericResponse {
 

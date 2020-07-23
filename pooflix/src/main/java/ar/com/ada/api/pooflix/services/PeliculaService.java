@@ -34,4 +34,9 @@ public class PeliculaService {
         List<Pelicula> listaPelis = peliculaRepo.findAllByNombre(nombre);
         return listaPelis;
     }
+
+    public boolean eliminarPelicula(ObjectId id) {
+        peliculaRepo.deleteById(id);
+        return true;
+    }
 }

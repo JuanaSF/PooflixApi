@@ -35,4 +35,9 @@ public class SerieService {
         List<Serie> listaSeries = serieRepo.findAllByNombre(nombre);
         return listaSeries;
     }
+
+    public boolean eliminarSerie(ObjectId id){
+        serieRepo.deleteById(id);
+        return true;
+    }
 }
